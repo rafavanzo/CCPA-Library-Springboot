@@ -1,5 +1,7 @@
 package com.rafael.ccpasystembackend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +17,8 @@ public class Livro {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_livro", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false, unique = true)
+    @JsonProperty("_idLivro")
     private Long idLivro;
     
     @Column(nullable = false, unique = true)
@@ -27,7 +30,7 @@ public class Livro {
     @Column(nullable = false)
     private String editora;
 
-    @Column(name = "data_lancamento", nullable = false)
+    @Column(nullable = false)
     private String dataLancamento;
 
     @Column(nullable = false)
