@@ -18,17 +18,28 @@ public class CcpasystembackendApplication {
 	@Bean
 	CommandLineRunner initDataBase(LivroRepository livroRepository) {
 		return args -> {
+			// adicione dois livros ao banco de dados H2
+			
 			livroRepository.deleteAll();
 
 			Livro l = new Livro();
-			l.setCodigo("123");
+			l.setCodigo("1");
 			l.setTitulo("O Senhor dos Anéis");
-			l.setEditora("Martins Fontes");
-			l.setDataLancamento("01/01/2001");
+			l.setEditora("HarperCollins");
+			l.setDataLancamento("29/07/1954");
 			l.setAutor("J. R. R. Tolkien");
 			l.setGenero("Fantasia");
+			
+			Livro l2 = new Livro();
+			l2.setCodigo("2");
+			l2.setTitulo("Harry Potter e a Pedra Filosofal");
+			l2.setEditora("Rocco");
+			l2.setDataLancamento("26/06/1997");
+			l2.setAutor("J. K. Rowling");
+			l2.setGenero("Fantasia");
 
 			livroRepository.save(l);
+			livroRepository.save(l2);
 		};
 	}
 }

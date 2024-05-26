@@ -2,7 +2,6 @@ package com.rafael.ccpasystembackend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +30,7 @@ public class Livro {
     private String editora;
 
     @Column(nullable = false)
-    private String dataLancamento;
+    private string dataLancamento;
 
     @Column(nullable = false)
     private String autor;
