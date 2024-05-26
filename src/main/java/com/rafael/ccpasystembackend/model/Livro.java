@@ -30,7 +30,7 @@ public class Livro {
     private String editora;
 
     @Column(nullable = false)
-    private string dataLancamento;
+    private String dataLancamento;
 
     @Column(nullable = false)
     private String autor;
