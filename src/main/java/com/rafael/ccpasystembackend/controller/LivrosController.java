@@ -15,6 +15,8 @@ import com.rafael.ccpasystembackend.model.Livro;
 import com.rafael.ccpasystembackend.repository.LivroRepository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/api/livros")
@@ -30,9 +32,9 @@ public class LivrosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Livro> getById(@PathVariable Long id) {
+    public ResponseEntity<Livro> get(@PathVariable Long id) {
         return livroRepository.findById(id)
-                .map(result -> ResponseEntity.ok().body(result))
+                .map(record -> ResponseEntity.ok().body(record))
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -40,5 +42,23 @@ public class LivrosController {
     public ResponseEntity<Livro> create(@RequestBody Livro livro) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(livroRepository.save(livro));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Livro> update(@PathVariable Long id, @RequestBody Livro livro) {
+        return livroRepository.findById(id)
+                .map(recordFound -> 
+                {
+                    recordFound.setCodigo(livro.getCodigo());
+                    recordFound.setTitulo(livro.getTitulo());
+                    recordFound.setEditora(livro.getEditora());
+                    recordFound.setDataLancamento(livro.getDataLancamento());
+                    recordFound.setAutor(livro.getAutor());
+                    recordFound.setGenero(livro.getGenero());
+                    Livro updated = livroRepository.save(recordFound);
+                    return ResponseEntity.ok().body(updated);
+                }
+                )
+                .orElse(ResponseEntity.notFound().build());         
     }
 }
