@@ -35,7 +35,7 @@ public class LivrosController {
     @GetMapping("/{id}")
     public ResponseEntity<Livro> get(@PathVariable Long id) {
         return livroRepository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
+                .map(recordGet -> ResponseEntity.ok().body(recordGet))
                 .orElse(ResponseEntity.notFound().build());
     }
 
