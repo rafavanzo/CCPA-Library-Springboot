@@ -18,7 +18,7 @@ public class CcpasystembackendApplication {
 	@Bean
 	CommandLineRunner initDataBase(LivroRepository livroRepository) {
 		return args -> {
-			// adicione dois livros ao banco de dados H2
+			// adicione dois livros ao banco de dados MySQL
 			
 			livroRepository.deleteAll();
 
