@@ -1,10 +1,12 @@
 services:
   mysql:
     image: 'mysql:latest'
+    env_file:
+      - .env.local
     environment:
       - 'MYSQL_DATABASE=CCPA-System-DB'
-      - 'MYSQL_PASSWORD=${MYSQL_PASSWORD}'
-      - 'MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}'
+      - 'MYSQL_PASSWORD=MYSQL_PASSWORD'
+      - 'MYSQL_ROOT_PASSWORD=MYSQL_ROOT_PASSWORD'
       - 'MYSQL_USER=user'
     ports:
       - '3307:3306'
